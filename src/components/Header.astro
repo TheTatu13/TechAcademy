@@ -25,7 +25,7 @@ const navItems: NavItem[] = [
 ];
 
 const isActive = (pathKey: keyof typeof routes.ro) => {
-  const currentPath = Astro.url.pathname;
+  const currentPath = Astro.url.pathname; // include prefixul de deploy, ca si translatePath
   const localizedPath = translatePath(pathKey);
   return currentPath.replace(/\/$/, '') === localizedPath.replace(/\/$/, '');
 };

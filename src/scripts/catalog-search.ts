@@ -22,7 +22,7 @@ const list = document.getElementById('search-list');
 
 async function loadPagefind(): Promise<PagefindApi | null> {
   try {
-    const path = '/pagefind/pagefind.js';
+    const path = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/pagefind/pagefind.js`;
     return (await import(/* @vite-ignore */ path)) as PagefindApi;
   } catch {
     return null;

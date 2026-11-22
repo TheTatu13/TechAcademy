@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { getLangFromURL } from '../i18n/utils';
+import { getLangFromURL, withBase } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -25,8 +25,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
     <link rel="canonical" href={canonical} />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
@@ -36,7 +36,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
 
-    <script is:inline>
+    <script is:inline define:vars={{ base: withBase('/') }}>
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
@@ -54,12 +54,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         document.documentElement.classList.add('dark');
       }
 
-      if (window.location.pathname === "/" && !localStorage.getItem("user-language")) {
+      if (window.location.pathname === base && !localStorage.getItem("user-language")) {
         const browserLang = navigator.language || navigator.userLanguage;
 
         if (!browserLang.startsWith("ro")) {
           localStorage.setItem("user-language", "en");
-          window.location.href = "/en/"
+          window.location.href = base + "en/"
         } else {
           localStorage.setItem("user-language", "ro");
         }
