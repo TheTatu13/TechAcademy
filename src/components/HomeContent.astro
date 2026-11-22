@@ -50,12 +50,14 @@ const secondaryButton =
 ---
 
 <div class="relative overflow-hidden dark:[&_h1]:text-white dark:[&_h2]:text-white">
-  {/* Fundal: grila + aurora. Decorativ, deci ascuns cititoarelor de ecran. */}
+  {/* Fundal: grila, doua lumini discrete pe margini si campul de particule. Decorativ, ascuns cititoarelor de ecran. */}
   <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
     <div class="home-grid absolute inset-0"></div>
-    <div class="aurora-blob absolute -top-24 left-[10%] h-96 w-96 rounded-full bg-cyan-400/30 blur-3xl dark:bg-cyan-500/25"></div>
-    <div class="aurora-blob absolute top-10 right-[8%] h-96 w-96 rounded-full bg-violet-400/25 blur-3xl [animation-delay:-6s] dark:bg-violet-500/25"></div>
-    <div class="aurora-blob absolute top-72 left-[40%] h-80 w-80 rounded-full bg-emerald-300/25 blur-3xl [animation-delay:-12s] dark:bg-emerald-400/15"></div>
+    <div class="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-500/15"></div>
+    <div class="absolute top-0 -right-24 h-96 w-96 rounded-full bg-violet-400/15 blur-3xl dark:bg-violet-500/15"></div>
+    <div class="particle-mask absolute inset-x-0 top-0 h-[1000px]">
+      <canvas id="particle-field" class="h-full w-full"></canvas>
+    </div>
   </div>
 
   {/* Hero */}
@@ -287,6 +289,7 @@ const secondaryButton =
 
 <script>
   import '../scripts/progress-ui';
+  import '../scripts/particle-field';
   import { progressStore } from '../lib/progress';
 
   // Aparitii la scroll. Fara JS (sau cu reduced-motion) continutul ramane vizibil.
