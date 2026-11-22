@@ -1,4 +1,5 @@
 ---
+import { DISCORD_URL } from '../lib/links';
 import PageBackdrop from './ui/PageBackdrop.astro';
 import { buttonClass, cardClass, chipClass, eyebrowClass, gradientTextClass } from './ui/styles';
 import { getSeries, getTutorialSlug, getTutorials } from '../lib/tutorials';
@@ -79,7 +80,7 @@ const actions = [
   { href: firstHref, label: copy.lesson },
   null,
   null,
-  { href: 'https://discord.gg/KPMkdUfQNu', label: copy.discord, external: true },
+  { href: DISCORD_URL, label: copy.discord, external: true },
   { href: translatePath('get-involved'), label: copy.involved },
 ];
 ---
