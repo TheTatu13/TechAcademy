@@ -71,26 +71,125 @@ Vezi ce se întâmplă când deschizi un document, scrii în el și îl salvezi:
 
 ## Verifică-te
 
-Încearcă să răspunzi în minte, apoi apasă pe întrebare ca să vezi răspunsul.
+Alege un răspuns în minte, apoi apasă pe întrebare ca să vezi răspunsul corect.
 
 <details>
-<summary>1. Care componentă face calculele?</summary>
+<summary>1. Scrii un eseu pe calculator de o oră fără să fi apăsat butonul de salvare, iar curentul electric se oprește brusc. De unde s-au pierdut modificările tale?</summary>
 
-Procesorul (CPU).
+- **A.** Din memoria RAM
+- **B.** Din procesorul central
+- **C.** Din memoria de stocare
+- **D.** Din sistemul de operare
+
+**Răspuns corect: A.** Memoria RAM este volatilă și păstrează temporar modificările curente, astfel că întregul ei conținut dispare la întreruperea curentului.
 
 </details>
 
 <details>
-<summary>2. Ce se întâmplă cu RAM când oprești calculatorul?</summary>
+<summary>2. În analogia biroului din lecție, elevul ia caietele din dulap și le pune pe masă ca să lucreze. Ce componentă a calculatorului corespunde mesei?</summary>
 
-Se golește. RAM este volatilă și nu păstrează datele fără curent.
+- **A.** Procesorul (CPU)
+- **B.** Discul magnetic (HDD)
+- **C.** Unitatea de stocare (SSD)
+- **D.** Memoria RAM
+
+**Răspuns corect: D.** Masa este spațiul rapid unde ții la îndemână doar ce folosești acum. Exact asta face memoria RAM. Elevul este procesorul, iar dulapul este stocarea.
 
 </details>
 
 <details>
-<summary>3. Unde rămâne un document salvat după ce oprești calculatorul?</summary>
+<summary>3. Dai dublu clic pe o fotografie salvată în calculator pentru a o vizualiza pe ecran. Care este primul traseu pe care îl parcurg datele fișierului?</summary>
 
-Pe stocare (SSD sau HDD).
+- **A.** Din stocare în memoria RAM
+- **B.** Din procesor în stocare
+- **C.** Din memoria RAM în stocare
+- **D.** Din procesor în memoria RAM
+
+**Răspuns corect: A.** Pentru a putea fi accesat rapid de procesor, fișierul aflat pe termen lung pe SSD sau HDD este copiat mai întâi în memoria RAM.
+
+</details>
+
+<details>
+<summary>4. Un prieten încearcă să copieze pozele din vacanță pe laptop, dar primește mesajul că nu mai are spațiu disponibil. El crede că trebuie să cumpere mai multă memorie RAM. Ce componentă trebuie să extindă sau să elibereze, de fapt?</summary>
+
+- **A.** Procesorul (CPU)
+- **B.** Stocarea (SSD sau HDD)
+- **C.** Memoria volatilă
+- **D.** Memoria RAM
+
+**Răspuns corect: B.** Pozele, filmele și documentele păstrate pe termen lung ocupă spațiu pe unitatea de stocare non-volatilă.
+
+</details>
+
+<details>
+<summary>5. Vrei un calculator care pornește sistemul de operare și aplicațiile cât mai repede, fără piese mecanice în mișcare. Ce tip de stocare ar trebui să aibă?</summary>
+
+- **A.** O unitate electronică SSD
+- **B.** O memorie volatilă RAM
+- **C.** Un disc magnetic HDD
+- **D.** Un procesor central CPU
+
+**Răspuns corect: A.** SSD-ul stochează datele pe cipuri electronice, fără piese în mișcare, și oferă viteze mult mai mari de citire și de pornire.
+
+</details>
+
+<details>
+<summary>6. Ai terminat de scris o scrisoare și apeși butonul de salvare. Ce coordonează procesorul în acel moment?</summary>
+
+- **A.** Scrie versiunea actualizată din RAM pe stocare
+- **B.** Transferă fișierul definitiv în interiorul procesorului
+- **C.** Șterge fișierul vechi din memoria RAM
+- **D.** Copiază fișierul din stocare în memoria RAM
+
+**Răspuns corect: A.** La salvare, procesorul trimite modificările aflate temporar în RAM către SSD sau HDD și suprascrie vechiul fișier.
+
+</details>
+
+<details>
+<summary>7. După ce ai salvat un document important, închizi programul de editare, dar lași calculatorul pornit. Ce se întâmplă cu datele documentului?</summary>
+
+- **A.** Rămân blocate în RAM până la oprirea calculatorului
+- **B.** Se mută din stocare direct în procesor
+- **C.** Se șterg definitiv atât din RAM, cât și de pe stocare
+- **D.** Se eliberează din RAM și rămân pe stocare
+
+**Răspuns corect: D.** Închiderea aplicației eliberează spațiul ocupat în RAM pentru alte programe, iar fișierul salvat rămâne în siguranță pe SSD sau HDD.
+
+</details>
+
+<details>
+<summary>8. Un calculator are destulă memorie RAM pentru programele deschise, dar merge foarte lent la calcule matematice complexe. Care componentă limitează performanța?</summary>
+
+- **A.** Viteza procesorului (CPU)
+- **B.** Spațiul liber de pe SSD
+- **C.** Capacitatea totală a memoriei RAM
+- **D.** Viteza de rotație a discului HDD
+
+**Răspuns corect: A.** Procesorul face calculele și execută instrucțiunile, deci viteza lui hotărăște ritmul acestor operații.
+
+</details>
+
+<details>
+<summary>9. Verifici specificațiile unui laptop obișnuit și vezi două capacități: una mult mai mică și una mult mai mare. Cum se potrivesc de obicei?</summary>
+
+- **A.** RAM de ordinul terabaiților, stocare de ordinul gigabaiților
+- **B.** RAM de ordinul gigabaiților, stocare de ordinul terabaiților
+- **C.** RAM de ordinul terabaiților, stocare de ordinul terabaiților
+- **D.** RAM de ordinul sutelor de gigabaiți, stocare de ordinul gigabaiților
+
+**Răspuns corect: B.** RAM are de obicei capacități de ordinul gigabaiților, iar stocarea are sute de gigabaiți sau terabaiți.
+
+</details>
+
+<details>
+<summary>10. Ai deschis zeci de file în browser și mai multe programe deodată, iar calculatorul încetinește brusc, deși nu faci calcule grele. În analogia biroului, ce situație descrie cel mai bine problema?</summary>
+
+- **A.** Elevul de la birou a plecat acasă
+- **B.** Dosarele din dulap au fost șterse
+- **C.** Dulapul cu dosare este complet gol
+- **D.** Masa de lucru a rămas fără spațiu
+
+**Răspuns corect: D.** Când prea multe programe umplu memoria RAM, sistemul mută des date către și dinspre stocare, iar asta încetinește vizibil lucrul.
 
 </details>
 
