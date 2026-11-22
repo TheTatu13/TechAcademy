@@ -24,6 +24,16 @@ export function useTranslatedPath(lang: keyof typeof ui) {
 export function getRouteFromPath(pathname: string) {
   const cleanPath = pathname.replace(/^\/en/, '').replace(/^\//, '').replace(/\/$/, '');
 
+  // Lectiile nu au traducere garantata, deci comutatorul de limba duce la catalog.
+  if (
+    cleanPath.startsWith('tutoriale/') ||
+    cleanPath.startsWith('tutorials/') ||
+    cleanPath.startsWith('seria/') ||
+    cleanPath.startsWith('series/')
+  ) {
+    return 'catalog';
+  }
+
   const keys = Object.keys(routes.ro) as Array<keyof typeof routes.ro>;
   for (const key of keys) {
     if (routes.ro[key] === cleanPath || routes.en[key] === cleanPath) {

@@ -2,19 +2,39 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { getLangFromURL } from '../i18n/utils';
+import '../styles/global.css';
 
-const langauge = getLangFromURL(Astro.url);
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const language = getLangFromURL(Astro.url);
+const siteName = 'Academia peViitor';
+const defaultDescription =
+  language === 'ro'
+    ? 'Tutoriale gratuite de tehnologie, create de comunitatea peViitor.'
+    : 'Free technology tutorials created by the peViitor community.';
+const { title, description = defaultDescription } = Astro.props;
+const pageTitle = title ? `${title} | ${siteName}` : siteName;
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang={langauge}>
+<html lang={language}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonical} />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
 
     <script is:inline>
       const theme = (() => {
