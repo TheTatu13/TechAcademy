@@ -29,7 +29,7 @@ Imaginează-ți că îți faci tema la un birou.
 
 Dacă masa e mică, te ridici des la dulap și lucrezi mai greu. La fel se întâmplă și într-un calculator.
 
-![Schemă cu procesorul, memoria RAM și stocarea, legate prin săgeți](./01-diagrama-calculator.svg)
+![Un elev la birou, cu un dulap alături: elevul este procesorul, masa este memoria RAM, dulapul este stocarea](./01-analogia-birou.jpg)
 
 ## Definiția tehnică
 
@@ -42,12 +42,16 @@ Dacă masa e mică, te ridici des la dulap și lucrezi mai greu. La fel se înt�
 - **HDD** (*hard disk*): are discuri care se rotesc. Este mai lent.
 - **SSD**: are cipuri, fără piese în mișcare. Este mult mai rapid.
 
+![Imagini cu un procesor, un modul de memorie RAM și două tipuri de stocare, SSD și HDD](./01-componente.jpg)
+
 > [!NOTE]
 > **Ține minte:** procesorul *lucrează*, RAM *ține ce folosești acum*, stocarea *păstrează tot, pe termen lung*.
 
 ## Exemplu pas cu pas
 
 Vezi ce se întâmplă când deschizi un document, scrii în el și îl salvezi:
+
+![Schemă: la deschidere, datele merg din stocare în RAM și apoi la procesor; la salvare merg înapoi, spre stocare](./01-deschidere-salvare.jpg)
 
 1. Dai dublu clic pe document.
 2. Programul de scris și documentul sunt copiate din stocare în RAM.
