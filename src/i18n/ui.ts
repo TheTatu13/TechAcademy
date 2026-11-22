@@ -12,7 +12,7 @@ export const ui = {
     // Footer
     'footer.rights': 'Academia peViitor. Toate drepturile rezervate.',
     'footer.description':
-      'Academia peViitor © 2026 Dedicați excelenței academice și accesibilității universale în educație.',
+      'Academia peViitor © 2026. Tutoriale gratuite de programare, scrise de voluntari.',
     'footer.contact': 'Contactează-ne',
     'footer.links': 'Linkuri utile',
     'footer.resources': 'Resurse',
@@ -137,11 +137,11 @@ export const ui = {
     'nav.getInvolved': 'Get Involved',
 
     // Footer
-    'footer.rights': 'peViitor Academy. All rights reserved.',
+    'footer.rights': 'Academia peViitor. All rights reserved.',
     'footer.description':
-      'peViitor Academy © 2026 Dedicated to academic excellence and universal accessibility in education.',
+      'Academia peViitor © 2026. Free programming tutorials, written by volunteers.',
     'footer.contact': 'Contact us',
-    'footer.links': 'Usefull links',
+    'footer.links': 'Useful links',
     'footer.resources': 'Resources',
     'footer.contactHeading': 'Contact',
     'footer.contactLink': 'Contact us',

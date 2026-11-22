@@ -62,7 +62,7 @@ const isActive = (pathKey: keyof typeof routes.ro) => {
           <li>
             <a
               href={translatePath(item.key)}
-              class={`text-md font-semibold tracking-wide transition-colors dark:text-primary-dark dark:hover:text-pastel-blue-200 text-primary-light hover:text-green-700 duration-300 border-b-2 pb-1
+              class={`whitespace-nowrap text-md font-semibold tracking-wide transition-colors dark:text-primary-dark dark:hover:text-pastel-blue-200 text-primary-light hover:text-green-700 duration-300 border-b-2 pb-1
               ${
                 isActive(item.key)
                   ? 'border-primary-light hover:border-green-700 dark:border-primary-dark dark:hover:border-pastel-blue-200'
