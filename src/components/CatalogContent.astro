@@ -1,4 +1,5 @@
 ---
+import PageBackdrop from './ui/PageBackdrop.astro';
 import TutorialCard from './TutorialCard.astro';
 import { getTutorials } from '../lib/tutorials';
 import { DOMAINS, LEVELS } from '../content.config';
@@ -19,6 +20,8 @@ const selectClass =
   'h-[46px] w-full rounded-lg border border-beige-700 bg-beige-300 px-4 text-sm dark:border-pastel-blue-900 dark:bg-[#0f1a21] sm:w-60';
 ---
 
+<div class="relative overflow-hidden">
+<PageBackdrop />
 <section class="mx-auto max-w-[1392px] p-6">
   <h1 class="mb-4 text-3xl font-bold text-primary-light dark:text-primary-dark">
     {t('catalog.title')}
@@ -109,6 +112,7 @@ const selectClass =
     )
   }
 </section>
+</div>
 
 <script>
   import '../scripts/progress-ui';
