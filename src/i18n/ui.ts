@@ -2,7 +2,7 @@ export const defaultLang = 'ro';
 
 export const ui = {
   ro: {
-    'nav.home': 'Pagina principală',
+    'nav.home': 'Acasă',
     'nav.catalog': 'Catalog',
     'nav.onboarding': 'Onboarding',
     'nav.mentors': 'Mentori',
