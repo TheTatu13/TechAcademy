@@ -14,3 +14,9 @@
 @media (prefers-reduced-motion: reduce) {
   .js-reveal .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .home-bg-gif {
+    display: none;
+  }
+}

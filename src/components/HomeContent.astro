@@ -5,7 +5,7 @@ import { buttonClass, cardClass, eyebrowClass } from './ui/styles';
 import TutorialCard from './TutorialCard.astro';
 import { DOMAINS } from '../content.config';
 import { getSeries, getTutorialSlug, getTutorials } from '../lib/tutorials';
-import { useTranslation, useTranslatedPath } from '../i18n/utils';
+import { useTranslation, useTranslatedPath, withBase } from '../i18n/utils';
 
 interface Props {
   lang: 'ro' | 'en';
@@ -50,6 +50,16 @@ const secondaryButton = buttonClass('secondary');
 
 <div class="relative overflow-hidden dark:[&_h1]:text-white dark:[&_h2]:text-white">
   {/* Fundal: grila, doua lumini discrete pe margini si campul de particule. Decorativ, ascuns cititoarelor de ecran. */}
+  {/* GIF in bucla, fix in spatele paginii. Centrul lui e intunecat si curat, deci textul ramane lizibil. Ascuns la "reduce motion". */}
+  <img
+    src={withBase('/home-bg.gif')}
+    alt=""
+    aria-hidden="true"
+    width="640"
+    height="360"
+    decoding="async"
+    class="home-bg-gif pointer-events-none fixed inset-0 -z-20 h-screen w-screen object-cover opacity-15 dark:opacity-60"
+  />
   <canvas id="particle-field" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 h-screen w-screen"></canvas>
   <PageBackdrop />
 
