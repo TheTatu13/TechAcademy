@@ -14,7 +14,8 @@ const { lang } = Astro.props;
 const translatePath = useTranslatedPath(lang);
 
 const tutorials = await getTutorials(lang);
-const lessons = getSeries(tutorials)[0]?.lessons ?? [];
+// Lectiile despre contributie traiesc in seria `start-academia`, nu in prima serie din catalog.
+const lessons = getSeries(tutorials).find((series) => series.slug === 'start-academia')?.lessons ?? [];
 const lessonHref = (index: number) =>
   lessons[index] ? `${translatePath('tutorials')}/${getTutorialSlug(lessons[index])}/` : translatePath('catalog');
 
