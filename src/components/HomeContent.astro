@@ -1,6 +1,5 @@
 ---
 import { REPO_URL } from '../lib/links';
-import PageBackdrop from './ui/PageBackdrop.astro';
 import { buttonClass, cardClass, eyebrowClass } from './ui/styles';
 import TutorialCard from './TutorialCard.astro';
 import { DOMAINS } from '../content.config';
@@ -49,7 +48,6 @@ const secondaryButton = buttonClass('secondary');
 ---
 
 <div class="relative overflow-hidden dark:[&_h1]:text-white dark:[&_h2]:text-white">
-  {/* Fundal: grila, doua lumini discrete pe margini si campul de particule. Decorativ, ascuns cititoarelor de ecran. */}
   {/* Video in bucla, fix in spatele paginii. Centrul lui e intunecat si curat, deci textul ramane lizibil. Ascuns la "reduce motion". */}
   <video
     class="home-bg-gif pointer-events-none fixed inset-0 -z-20 h-screen w-screen object-cover opacity-15 dark:opacity-60"
@@ -64,7 +62,6 @@ const secondaryButton = buttonClass('secondary');
     tabindex="-1"
   ></video>
   <canvas id="particle-field" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 h-screen w-screen"></canvas>
-  <PageBackdrop />
 
   {/* Hero */}
   <section class="mx-auto max-w-5xl px-6 pt-10 pb-16 text-center md:pt-16">
