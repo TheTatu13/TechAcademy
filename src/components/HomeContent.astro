@@ -51,13 +51,11 @@ const secondaryButton =
 
 <div class="relative overflow-hidden dark:[&_h1]:text-white dark:[&_h2]:text-white">
   {/* Fundal: grila, doua lumini discrete pe margini si campul de particule. Decorativ, ascuns cititoarelor de ecran. */}
+  <canvas id="particle-field" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 h-screen w-screen"></canvas>
   <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
     <div class="home-grid absolute inset-0"></div>
     <div class="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-500/15"></div>
     <div class="absolute top-0 -right-24 h-96 w-96 rounded-full bg-violet-400/15 blur-3xl dark:bg-violet-500/15"></div>
-    <div class="particle-mask absolute inset-x-0 top-0 h-[1000px]">
-      <canvas id="particle-field" class="h-full w-full"></canvas>
-    </div>
   </div>
 
   {/* Hero */}

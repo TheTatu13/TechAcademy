@@ -2,9 +2,6 @@
 @config "../../tailwind.config.cjs";
 
 /* Pagina de start: aurora animata si aparitii la scroll. Respecta prefers-reduced-motion. */
-.particle-mask {
-  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
-}
 .home-grid {
   background-image:
     linear-gradient(to right, rgb(100 116 139 / 0.12) 1px, transparent 1px),

@@ -1,7 +1,7 @@
 /**
- * Camp de particule pentru fundalul paginii de start. Particulele plutesc usor,
- * se feresc de cursor si revin la locul lor. Zona din centru ramane goala, ca
- * textul si cautarea sa nu concureze cu fundalul.
+ * Camp de particule fix, pe toata pagina de start. Particulele plutesc usor,
+ * se feresc de cursor si revin la locul lor. Zona din centru ramane goala
+ * in hero; mai jos, cand se deruleaza, particulele pot aparea si in centru, mai discret.
  */
 const canvas = document.getElementById('particle-field') as HTMLCanvasElement | null;
 const ctx = canvas?.getContext('2d');
@@ -28,15 +28,14 @@ if (canvas && ctx) {
   const RADIUS = 130; // raza de influenta a cursorului
 
   const resize = () => {
-    const rect = canvas.getBoundingClientRect();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = rect.width;
-    height = rect.height;
+    width = window.innerWidth;
+    height = window.innerHeight;
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = Math.min(Math.round((width * height) / 7000), 170);
+    const count = Math.min(Math.round((width * height) / 9000), 150);
     particles.length = 0;
     for (let i = 0; i < count; i++) {
       const x = Math.random() * width;
@@ -53,9 +52,12 @@ if (canvas && ctx) {
   /** 0 in centrul paginii (zona de text), 1 spre margini. */
   const edgeFactor = (x: number, y: number) => {
     const dx = (x - width / 2) / (width * 0.3);
-    const dy = (y - 380) / 330;
+    const dy = (y - height * 0.45) / (height * 0.38);
     const d = Math.sqrt(dx * dx + dy * dy);
-    return Math.min(1, Math.max(0, (d - 0.85) / 0.6));
+    const edge = Math.min(1, Math.max(0, (d - 0.85) / 0.6));
+    // Dupa ce se deruleaza, centrul primeste o parte din particule (nu mai e zona hero).
+    const floor = Math.min(0.35, (window.scrollY / 700) * 0.35);
+    return Math.max(edge, floor);
   };
 
   const draw = (time: number) => {
@@ -109,9 +111,8 @@ if (canvas && ctx) {
   resize();
   window.addEventListener('resize', resize);
   window.addEventListener('pointermove', (event) => {
-    const rect = canvas.getBoundingClientRect();
-    pointer.x = event.clientX - rect.left;
-    pointer.y = event.clientY - rect.top;
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
   });
   document.addEventListener('pointerleave', () => {
     pointer.x = pointer.y = -9999;
