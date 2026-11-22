@@ -8,6 +8,7 @@ interface PagefindResultData {
   meta: { title?: string };
 }
 interface PagefindApi {
+  init?(): Promise<void>;
   search(query: string): Promise<{
     results: Array<{ data(): Promise<PagefindResultData> }>;
   }>;
@@ -38,6 +39,8 @@ async function init() {
   if (!pagefind) return;
 
   wrapper.hidden = false;
+  // Incarca indexul din timp, ca prima cautare sa nu astepte descarcarea lui.
+  void pagefind.init?.();
   let timer: number | undefined;
   let latest = 0;
 
@@ -63,7 +66,7 @@ async function init() {
     summary.textContent =
       items.length === 0
         ? `${input.dataset.labelNone ?? ''} „${query}”`
-        : `${search.results.length} ${input.dataset.labelResults ?? ''} „${query}”`;
+        : `${search.results.length} ${(search.results.length === 1 ? input.dataset.labelResult : input.dataset.labelResults) ?? ''} „${query}”`;
 
     for (const item of items) {
       const li = document.createElement('li');
@@ -89,7 +92,7 @@ async function init() {
 
   input.addEventListener('input', () => {
     window.clearTimeout(timer);
-    timer = window.setTimeout(run, 150);
+    timer = window.setTimeout(run, 60);
   });
 
   // Cautarea din pagina de start trimite termenul in `?q=`.

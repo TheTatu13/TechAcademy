@@ -126,6 +126,7 @@ export const ui = {
     'search.placeholder': 'Caută, de exemplu „git” sau „pull request”',
     'search.noResults': 'Niciun rezultat pentru',
     'search.results': 'rezultate pentru',
+    'search.result': 'rezultat pentru',
   },
   en: {
     'nav.home': 'Home',
@@ -252,6 +253,7 @@ export const ui = {
     'search.placeholder': 'Search, for example "git" or "pull request"',
     'search.noResults': 'No results for',
     'search.results': 'results for',
+    'search.result': 'result for',
   },
 } as const;
 
