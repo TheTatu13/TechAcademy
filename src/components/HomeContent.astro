@@ -1,4 +1,6 @@
 ---
+import PageBackdrop from './ui/PageBackdrop.astro';
+import { buttonClass, cardClass, eyebrowClass } from './ui/styles';
 import TutorialCard from './TutorialCard.astro';
 import { DOMAINS } from '../content.config';
 import { getSeries, getTutorialSlug, getTutorials } from '../lib/tutorials';
@@ -39,24 +41,16 @@ const featuredEntries = featured ? (featured.project ? [...featured.lessons, fea
 const featuredIds = featuredEntries.map((entry) => entry.id).join(',');
 const catalogPath = translatePath('catalog');
 
-const card =
-  'rounded-2xl border border-slate-200 bg-white/70 backdrop-blur dark:border-white/10 dark:bg-white/5';
-const eyebrow =
-  'font-mono text-xs font-semibold uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300';
-const primaryButton =
-  'inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:brightness-110';
-const secondaryButton =
-  'inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 font-semibold transition hover:border-cyan-500 dark:border-white/20 dark:hover:border-cyan-300';
+const card = cardClass;
+const eyebrow = eyebrowClass;
+const primaryButton = buttonClass('primary');
+const secondaryButton = buttonClass('secondary');
 ---
 
 <div class="relative overflow-hidden dark:[&_h1]:text-white dark:[&_h2]:text-white">
   {/* Fundal: grila, doua lumini discrete pe margini si campul de particule. Decorativ, ascuns cititoarelor de ecran. */}
   <canvas id="particle-field" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 h-screen w-screen"></canvas>
-  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
-    <div class="home-grid absolute inset-0"></div>
-    <div class="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-500/15"></div>
-    <div class="absolute top-0 -right-24 h-96 w-96 rounded-full bg-violet-400/15 blur-3xl dark:bg-violet-500/15"></div>
-  </div>
+  <PageBackdrop />
 
   {/* Hero */}
   <section class="mx-auto max-w-5xl px-6 pt-10 pb-16 text-center md:pt-16">

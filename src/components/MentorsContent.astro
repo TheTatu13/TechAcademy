@@ -1,4 +1,6 @@
 ---
+import PageBackdrop from './ui/PageBackdrop.astro';
+import { buttonClass, cardClass, eyebrowClass, gradientTextClass } from './ui/styles';
 import { mentors } from '../data/mentors';
 import { useTranslatedPath } from '../i18n/utils';
 
@@ -47,25 +49,19 @@ const copy = {
 const tags = [...new Set(mentors.flatMap((m) => m.tags))].sort((a, b) => a.localeCompare(b, lang));
 const involved = translatePath('get-involved');
 
-const card = 'rounded-2xl border border-slate-200 bg-white/70 p-6 backdrop-blur dark:border-white/10 dark:bg-white/5';
-const primaryButton =
-  'inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:brightness-110';
-const secondaryButton =
-  'inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold transition hover:border-cyan-500 dark:border-white/20 dark:hover:border-cyan-300';
+const card = `${cardClass} p-6`;
+const primaryButton = buttonClass('primary');
+const secondaryButton = buttonClass('secondary', 'sm');
 const chipBase =
   'rounded-full border px-3 py-1 text-xs font-semibold transition aria-pressed:border-cyan-500 aria-pressed:bg-cyan-500/15';
 ---
 
 <div class="relative overflow-hidden">
-  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
-    <div class="home-grid absolute inset-0"></div>
-    <div class="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-500/15"></div>
-    <div class="absolute top-0 -right-24 h-96 w-96 rounded-full bg-violet-400/15 blur-3xl dark:bg-violet-500/15"></div>
-  </div>
+  <PageBackdrop />
 
   <section class="mx-auto max-w-3xl px-6 pt-12 pb-14 text-center md:pt-16">
-    <p class="mb-4 font-mono text-xs font-semibold tracking-[0.2em] text-cyan-700 uppercase dark:text-cyan-300">{copy.eyebrow}</p>
-    <h1 class="bg-gradient-to-r from-cyan-500 via-teal-400 to-violet-500 bg-clip-text text-4xl leading-tight font-extrabold tracking-tight text-transparent md:text-6xl dark:from-cyan-300 dark:via-sky-400 dark:to-violet-400">
+    <p class={`mb-4 ${eyebrowClass}`}>{copy.eyebrow}</p>
+    <h1 class={`text-4xl leading-tight font-extrabold tracking-tight md:text-6xl ${gradientTextClass}`}>
       {copy.title}
     </h1>
     <p class="mx-auto mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">{copy.text}</p>
