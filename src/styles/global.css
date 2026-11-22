@@ -20,3 +20,14 @@
     display: none;
   }
 }
+
+/* Video-ul de fundal ramane la rezolutia lui nativa (fara scalare), centrat.
+   Pe ecrane mici se taie marginile; pe ecrane mari marginile se estompeaza. */
+.home-bg-gif {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  mask-composite: intersect;
+}
