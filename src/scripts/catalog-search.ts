@@ -29,6 +29,9 @@ async function loadPagefind(): Promise<PagefindApi | null> {
   }
 }
 
+// Citit inainte de orice `await`: scriptul filtrelor curata query-ul din URL la incarcare.
+const initialQuery = new URLSearchParams(location.search).get('q')?.trim() ?? '';
+
 async function init() {
   if (!wrapper || !input || !browse || !resultsBox || !summary || !list) return;
   const pagefind = await loadPagefind();
@@ -88,6 +91,12 @@ async function init() {
     window.clearTimeout(timer);
     timer = window.setTimeout(run, 150);
   });
+
+  // Cautarea din pagina de start trimite termenul in `?q=`.
+  if (initialQuery) {
+    input.value = initialQuery;
+    run();
+  }
 }
 
 init();
