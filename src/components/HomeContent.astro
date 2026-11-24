@@ -1,0 +1,341 @@
+---
+import { REPO_URL } from '../lib/links';
+import PageBackdrop from './ui/PageBackdrop.astro';
+import { buttonClass, cardClass, eyebrowClass } from './ui/styles';
+import TutorialCard from './TutorialCard.astro';
+import { DOMAINS } from '../content.config';
+import { getSeries, getTutorialSlug, getTutorials } from '../lib/tutorials';
+import { useTranslation, useTranslatedPath } from '../i18n/utils';
+
+interface Props {
+  lang: 'ro' | 'en';
+}
+
+const { lang } = Astro.props;
+const t = useTranslation(lang);
+const translatePath = useTranslatedPath(lang);
+
+const tutorials = await getTutorials(lang);
+const allSeries = getSeries(tutorials);
+const featured = allSeries[0];
+const latest = tutorials.slice(0, 6);
+const lessonHref = (entry: (typeof tutorials)[number]) =>
+  `${translatePath('tutorials')}/${getTutorialSlug(entry)}/`;
+const seriesHref = (slug: string) => `${translatePath('series')}/${slug}/`;
+
+const domainCounts = DOMAINS.map((domain) => ({
+  domain,
+  count: tutorials.filter((entry) => entry.data.domain === domain).length,
+}));
+
+// Lista ordonata a lectiilor, folosita de cardul "Continua de unde ai ramas".
+const ordered = allSeries.flatMap((series) =>
+  (series.project ? [...series.lessons, series.project] : series.lessons).map((entry) => ({
+    id: entry.id,
+    title: entry.data.title,
+    series: series.name,
+    href: lessonHref(entry),
+  })),
+);
+
+const featuredEntries = featured ? (featured.project ? [...featured.lessons, featured.project] : featured.lessons) : [];
+const featuredIds = featuredEntries.map((entry) => entry.id).join(',');
+const catalogPath = translatePath('catalog');
+
+const card = cardClass;
+const eyebrow = eyebrowClass;
+const primaryButton = buttonClass('primary');
+const secondaryButton = buttonClass('secondary');
+---
+
+<div class="relative overflow-hidden dark:[&_h1]:text-white dark:[&_h2]:text-white">
+  {/* Fundal: grila, doua lumini discrete pe margini si campul de particule. Decorativ, ascuns cititoarelor de ecran. */}
+  <canvas id="particle-field" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 h-screen w-screen"></canvas>
+  <PageBackdrop />
+
+  {/* Hero */}
+  <section class="mx-auto max-w-5xl px-6 pt-10 pb-16 text-center md:pt-16">
+    {featured && (
+      <a
+        href={seriesHref(featured.slug)}
+        class="mb-8 inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/70 py-1.5 pr-4 pl-1.5 text-sm backdrop-blur transition hover:border-cyan-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-cyan-300"
+      >
+        <span class="rounded-full bg-cyan-500 px-2.5 py-0.5 text-xs font-bold text-slate-950">{t('home.announce.label')}</span>
+        <span>{t('home.announce.text')}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    )}
+
+    <p class={`${eyebrow} mb-5`}>{t('home.eyebrow')}</p>
+    <h1 class="text-5xl leading-[1.05] font-extrabold tracking-tight md:text-7xl">
+      {t('home.title.line1')}<br />
+      <span class="bg-gradient-to-r from-cyan-500 via-teal-400 to-violet-500 bg-clip-text text-transparent dark:from-cyan-300 dark:via-sky-400 dark:to-violet-400">
+        {t('home.title.line2')}
+      </span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-300">{t('home.subtitle')}</p>
+
+    <form action={catalogPath} method="get" role="search" class="mx-auto mt-10 flex max-w-xl gap-2">
+      <label for="home-search" class="sr-only">{t('home.search.label')}</label>
+      <input
+        id="home-search"
+        name="q"
+        type="search"
+        autocomplete="off"
+        placeholder={t('search.placeholder')}
+        class="h-14 min-w-0 flex-1 rounded-full border border-slate-300 bg-white/80 px-6 text-base backdrop-blur focus:border-cyan-500 focus:outline-none dark:border-white/15 dark:bg-white/5 dark:focus:border-cyan-300"
+      />
+      <button type="submit" class={primaryButton}>{t('home.search.button')}</button>
+    </form>
+
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+      <a href={catalogPath} class={secondaryButton}>{t('home.cta.catalog')}</a>
+      <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class={secondaryButton}>
+        {t('home.cta.github')}
+      </a>
+    </div>
+
+    {/* Apare doar dupa ce JS-ul citeste progresul din browser. */}
+    {ordered.length > 0 && (
+      <div
+        id="home-continue"
+        hidden
+        data-lessons={JSON.stringify(ordered)}
+        data-label-start={t('home.continue.start')}
+        data-label-next={t('home.continue.next')}
+        class={`${card} mx-auto mt-10 max-w-xl p-4 text-left`}
+      >
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300" id="home-continue-label"></p>
+        <a id="home-continue-link" href="#" class="mt-1 block text-lg font-semibold hover:underline"></a>
+        <p id="home-continue-series" class="text-sm text-slate-500 dark:text-slate-400"></p>
+      </div>
+    )}
+  </section>
+
+  {/* Trei motive */}
+  <section class="mx-auto grid max-w-6xl gap-4 px-6 pb-20 md:grid-cols-3">
+    {[
+      { key: 'video', icon: '▶' },
+      { key: 'free', icon: '◎' },
+      { key: 'community', icon: '✦' },
+    ].map((feature) => (
+      <div class={`${card} reveal p-6`}>
+        <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-700 dark:text-cyan-300" aria-hidden="true">
+          {feature.icon}
+        </span>
+        <h2 class="mb-2 text-lg font-semibold">{t(`home.feature.${feature.key}.title` as any)}</h2>
+        <p class="text-sm text-slate-600 dark:text-slate-300">{t(`home.feature.${feature.key}.text` as any)}</p>
+      </div>
+    ))}
+  </section>
+
+  {/* Domenii */}
+  <section class="mx-auto max-w-6xl px-6 pb-20">
+    <div class="reveal mb-8 text-center">
+      <h2 class="text-3xl font-bold md:text-4xl">{t('home.domains.title')}</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-300">{t('home.domains.subtitle')}</p>
+    </div>
+    <ul class="grid grid-cols-2 gap-3 md:grid-cols-4">
+      {domainCounts.map(({ domain, count }) => (
+        <li class="reveal">
+          {count > 0 ? (
+            <a
+              href={`${catalogPath}?domain=${domain}`}
+              class={`${card} block h-full p-5 transition hover:-translate-y-0.5 hover:border-cyan-500 dark:hover:border-cyan-300`}
+            >
+              <span class="block font-semibold">{t(`domain.${domain}` as any)}</span>
+              <span class="mt-1 block text-sm text-slate-500 dark:text-slate-400">
+                {count} {t('series.lessons')}
+              </span>
+            </a>
+          ) : (
+            <div class={`${card} h-full p-5 opacity-60`}>
+              <span class="block font-semibold">{t(`domain.${domain}` as any)}</span>
+              <span class="mt-1 block text-sm text-slate-500 dark:text-slate-400">{t('home.domains.soon')}</span>
+            </div>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {/* Parcurs: seria reala cu progres */}
+  {featured && (
+    <section class="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-20 md:grid-cols-2">
+      <div class="reveal">
+        <p class={`${eyebrow} mb-3`}>{t('home.path.eyebrow')}</p>
+        <h2 class="mb-4 text-3xl font-bold md:text-4xl">{t('home.path.title')}</h2>
+        <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.path.text')}</p>
+        <a href={seriesHref(featured.slug)} class={primaryButton}>{t('home.path.open')}</a>
+      </div>
+      <div class={`${card} reveal p-6`}>
+        <div class="mb-1 flex items-baseline justify-between gap-4">
+          <h3 class="text-lg font-semibold">{featured.name}</h3>
+          <span class="text-xs font-semibold" data-series-ids={featuredIds} data-label={t('progress.lessonsSeen')}></span>
+        </div>
+        <div
+          role="progressbar"
+          aria-label={t('series.progress')}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          data-bar-ids={featuredIds}
+          class="mb-5 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10"
+        >
+          <div class="h-full w-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 transition-[width] duration-500"></div>
+        </div>
+        <ol class="flex flex-col gap-2">
+          {featuredEntries.map((entry, index) => (
+            <li>
+              <a
+                href={lessonHref(entry)}
+                class="flex items-center gap-3 rounded-xl border border-slate-200 p-3 transition hover:border-cyan-500 dark:border-white/10 dark:hover:border-cyan-300"
+              >
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/15 text-sm font-bold text-cyan-700 dark:text-cyan-300">
+                  {index + 1}
+                </span>
+                <span class="min-w-0 flex-1 truncate text-sm font-medium">{entry.data.title}</span>
+                <span hidden data-seen-id={entry.id} class="text-sm text-emerald-600 dark:text-emerald-300" aria-label={t('progress.seen')}>✓</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )}
+
+  {/* Contributie: terminal cu comenzi reale */}
+  <section class="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-20 md:grid-cols-2">
+    <div class="reveal order-2 md:order-1">
+      <div class="overflow-hidden rounded-2xl border border-slate-700 bg-slate-950 text-slate-100 shadow-xl">
+        <div class="flex items-center justify-between border-b border-white/10 px-4 py-2">
+          <div class="flex gap-1.5" aria-hidden="true">
+            <span class="h-3 w-3 rounded-full bg-red-400/80"></span>
+            <span class="h-3 w-3 rounded-full bg-amber-300/80"></span>
+            <span class="h-3 w-3 rounded-full bg-emerald-400/80"></span>
+          </div>
+          <button
+            type="button"
+            id="copy-commands"
+            data-label-copy={t('home.contribute.copy')}
+            data-label-copied={t('home.contribute.copied')}
+            class="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs transition hover:border-cyan-300"
+          >
+            {t('home.contribute.copy')}
+          </button>
+        </div>
+        <pre id="commands" class="overflow-x-auto p-5 font-mono text-sm leading-7"><code><span class="text-slate-500">$ </span>git clone https://github.com/peviitor-ro/academy
+<span class="text-slate-500">$ </span>npm install
+<span class="text-slate-500">$ </span>npm run dev</code></pre>
+      </div>
+    </div>
+    <div class="reveal order-1 md:order-2">
+      <p class={`${eyebrow} mb-3`}>{t('home.contribute.eyebrow')}</p>
+      <h2 class="mb-4 text-3xl font-bold md:text-4xl">{t('home.contribute.title')}</h2>
+      <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.contribute.text')}</p>
+      <a href={translatePath('get-involved')} class={secondaryButton}>{t('home.contribute.link')}</a>
+    </div>
+  </section>
+
+  {/* Lectii recente */}
+  {latest.length > 0 && (
+    <section class="mx-auto max-w-6xl px-6 pb-20">
+      <div class="reveal mb-8 flex flex-wrap items-end justify-between gap-4">
+        <h2 class="text-3xl font-bold md:text-4xl">{t('home.latest.title')}</h2>
+        <a href={catalogPath} class="font-semibold underline hover:text-cyan-700 dark:hover:text-cyan-300">
+          {t('home.latest.all')} →
+        </a>
+      </div>
+      <ul class="reveal grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {latest.map((entry) => <TutorialCard entry={entry} lang={lang} />)}
+      </ul>
+    </section>
+  )}
+
+  {/* Pentru cine */}
+  <section class="mx-auto grid max-w-6xl gap-4 px-6 pb-20 md:grid-cols-2">
+    <div class={`${card} reveal p-8`}>
+      <h2 class="mb-2 text-2xl font-bold">{t('home.audience.learner.title')}</h2>
+      <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.audience.learner.text')}</p>
+      <a href={catalogPath} class={primaryButton}>{t('home.cta.catalog')}</a>
+    </div>
+    <div class={`${card} reveal p-8`}>
+      <h2 class="mb-2 text-2xl font-bold">{t('home.audience.volunteer.title')}</h2>
+      <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.audience.volunteer.text')}</p>
+      <a href={translatePath('get-involved')} class={secondaryButton}>{t('home.audience.volunteer.cta')}</a>
+    </div>
+  </section>
+
+  {/* Apel final */}
+  <section class="mx-auto max-w-4xl px-6 pb-24 text-center">
+    <div class="reveal">
+      <h2 class="text-4xl font-extrabold md:text-5xl">{t('home.final.title')}</h2>
+      <p class="mx-auto mt-3 max-w-xl text-slate-600 dark:text-slate-300">{t('home.final.text')}</p>
+      <div class="mt-8">
+        <a href={featured && featuredEntries[0] ? lessonHref(featuredEntries[0]) : catalogPath} class={primaryButton}>
+          {t('home.cta.catalog')}
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  import '../scripts/progress-ui';
+  import '../scripts/particle-field';
+  import { progressStore } from '../lib/progress';
+
+  // Aparitii la scroll. Fara JS (sau cu reduced-motion) continutul ramane vizibil.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12 },
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  }
+
+  // "Continua de unde ai ramas": prima lectie nevazuta, dupa cea mai recenta vazuta.
+  const box = document.getElementById('home-continue');
+  if (box) {
+    type Lesson = { id: string; title: string; series: string; href: string };
+    const lessons: Lesson[] = JSON.parse(box.dataset.lessons ?? '[]');
+    const done = new Set(progressStore.getDone());
+    const lastDone = lessons.reduce((acc, l, i) => (done.has(l.id) ? i : acc), -1);
+    const next = lessons.slice(lastDone + 1).find((l) => !done.has(l.id)) ?? lessons.find((l) => !done.has(l.id));
+    if (next) {
+      const label = document.getElementById('home-continue-label');
+      const link = document.getElementById('home-continue-link') as HTMLAnchorElement | null;
+      const series = document.getElementById('home-continue-series');
+      if (label) label.textContent = done.size > 0 ? (box.dataset.labelNext ?? '') : (box.dataset.labelStart ?? '');
+      if (link) {
+        link.textContent = next.title;
+        link.href = next.href;
+      }
+      if (series) series.textContent = next.series;
+      box.hidden = false;
+    }
+  }
+
+  // Copiere comenzi
+  const copy = document.getElementById('copy-commands') as HTMLButtonElement | null;
+  const commands = document.getElementById('commands');
+  copy?.addEventListener('click', async () => {
+    const text = (commands?.textContent ?? '').replace(/^\$ /gm, '');
+    try {
+      await navigator.clipboard.writeText(text);
+      copy.textContent = copy.dataset.labelCopied ?? '';
+      window.setTimeout(() => (copy.textContent = copy.dataset.labelCopy ?? ''), 1500);
+    } catch {
+      // Clipboard indisponibil: utilizatorul poate selecta textul manual.
+    }
+  });
+</script>
