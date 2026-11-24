@@ -54,7 +54,7 @@ const card = `${cardClass} p-6`;
 const primaryButton = buttonClass('primary');
 const secondaryButton = buttonClass('secondary', 'sm');
 const chipBase =
-  'rounded-full border px-3 py-1 text-xs font-semibold transition aria-pressed:border-cyan-500 aria-pressed:bg-cyan-500/15';
+  'rounded-full border px-3 py-1 text-xs font-semibold transition aria-pressed:border-blue-500 aria-pressed:bg-blue-500/15';
 ---
 
 <div class="relative overflow-hidden">
@@ -65,7 +65,7 @@ const chipBase =
     <h1 class={`text-4xl leading-tight font-extrabold tracking-tight md:text-6xl ${gradientTextClass}`}>
       {copy.title}
     </h1>
-    <p class="mx-auto mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">{copy.text}</p>
+    <p class="mx-auto mt-5 max-w-xl text-lg text-green-600 dark:text-dark-100">{copy.text}</p>
     <div class="mt-8">
       <a href={involved} class={primaryButton}>{copy.contact}</a>
     </div>
@@ -76,9 +76,9 @@ const chipBase =
 
     {mentors.length > 0 && tags.length > 0 && (
       <div id="mentor-filters" class="mb-6 flex flex-wrap gap-2" role="group" aria-label={copy.filter}>
-        <button type="button" data-tag="" aria-pressed="true" class={`${chipBase} border-slate-300 dark:border-white/20`}>{copy.all}</button>
+        <button type="button" data-tag="" aria-pressed="true" class={`${chipBase} border-beige-600 dark:border-white/20`}>{copy.all}</button>
         {tags.map((tag) => (
-          <button type="button" data-tag={tag} aria-pressed="false" class={`${chipBase} border-slate-300 dark:border-white/20`}>{tag}</button>
+          <button type="button" data-tag={tag} aria-pressed="false" class={`${chipBase} border-beige-600 dark:border-white/20`}>{tag}</button>
         ))}
       </div>
     )}
@@ -87,18 +87,18 @@ const chipBase =
       {mentors.map((mentor) => (
         <li class={card} data-tags={JSON.stringify(mentor.tags)}>
           <div class="mb-3 flex items-center gap-3">
-            <span aria-hidden="true" class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 font-bold text-slate-950">
+            <span aria-hidden="true" class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-blue-600 font-bold text-white">
               {mentor.name.split(' ').map((part) => part[0]).slice(0, 2).join('').toUpperCase()}
             </span>
             <div class="min-w-0">
               <h3 class="truncate text-lg font-bold">{mentor.name}</h3>
-              <p class="text-xs font-semibold tracking-wide text-cyan-700 uppercase dark:text-cyan-300">{mentor.role}</p>
+              <p class="text-xs font-semibold tracking-wide text-blue-700 uppercase dark:text-pastel-blue-500">{mentor.role}</p>
             </div>
           </div>
-          <p class="text-sm text-slate-600 dark:text-slate-300">{mentor.bio}</p>
+          <p class="text-sm text-green-600 dark:text-dark-100">{mentor.bio}</p>
           <ul class="mt-4 flex flex-wrap gap-2">
             {mentor.tags.map((tag) => (
-              <li class="rounded-md bg-slate-200/70 px-2 py-0.5 text-xs dark:bg-white/10">{tag}</li>
+              <li class="rounded-md bg-beige-600/70 px-2 py-0.5 text-xs dark:bg-white/10">{tag}</li>
             ))}
           </ul>
           {mentor.url && (
@@ -110,14 +110,14 @@ const chipBase =
       {mentors.length === 0 && (
         <li class={`${card} md:col-span-2`}>
           <h3 class="mb-2 text-lg font-bold">{copy.emptyTitle}</h3>
-          <p class="mb-5 text-sm text-slate-600 dark:text-slate-300">{copy.emptyText}</p>
+          <p class="mb-5 text-sm text-green-600 dark:text-dark-100">{copy.emptyText}</p>
           <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" class={secondaryButton}>{copy.discord}</a>
         </li>
       )}
 
       <li class={`${card} md:col-span-2`}>
         <h3 class="mb-1 text-lg font-bold">{copy.becomeTitle}</h3>
-        <p class="mb-5 text-sm text-slate-600 dark:text-slate-300">{copy.becomeText}</p>
+        <p class="mb-5 text-sm text-green-600 dark:text-dark-100">{copy.becomeText}</p>
         <a href={involved} class={secondaryButton}>{copy.becomeCta}</a>
       </li>
     </ul>

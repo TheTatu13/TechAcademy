@@ -51,10 +51,10 @@ const secondaryButton = buttonClass('secondary');
           data-i18n="badge"
           class="mb-6 inline-block rounded-full bg-red-600/90 px-3 py-1 font-mono text-xs font-bold tracking-widest text-white uppercase"
         >{t.badge}</span>
-        <h1 data-i18n="title" class="bg-gradient-to-r from-cyan-500 via-teal-400 to-violet-500 bg-clip-text text-4xl leading-tight font-extrabold tracking-tight text-transparent md:text-6xl dark:from-cyan-300 dark:via-sky-400 dark:to-violet-400">
+        <h1 data-i18n="title" class="bg-gradient-to-r from-blue-500 via-blue-300 to-blue-600 bg-clip-text text-4xl leading-tight font-extrabold tracking-tight text-transparent md:text-6xl dark:from-pastel-blue-500 dark:via-blue-400 dark:to-blue-300">
           {t.title}
         </h1>
-        <p data-i18n="text" class="mt-6 max-w-lg text-lg text-slate-600 dark:text-slate-300">{t.text}</p>
+        <p data-i18n="text" class="mt-6 max-w-lg text-lg text-green-600 dark:text-dark-100">{t.text}</p>
 
         <form id="nf-search" action={t.catalogHref} method="get" role="search" class="mt-8 flex max-w-lg gap-2">
           <label for="nf-q" class="sr-only" data-i18n="search">{t.search}</label>
@@ -65,7 +65,7 @@ const secondaryButton = buttonClass('secondary');
             autocomplete="off"
             placeholder={t.placeholder}
             data-i18n-attr="placeholder:placeholder"
-            class="h-12 min-w-0 flex-1 rounded-full border border-slate-300 bg-white/80 px-5 backdrop-blur focus:border-cyan-500 focus:outline-none dark:border-white/15 dark:bg-white/5 dark:focus:border-cyan-300"
+            class="h-12 min-w-0 flex-1 rounded-full border border-beige-600 bg-white/80 px-5 backdrop-blur focus:border-blue-500 focus:outline-none dark:border-white/15 dark:bg-white/5 dark:focus:border-pastel-blue-500"
           />
           <button type="submit" data-i18n="searchButton" class={primaryButton}>{t.searchButton}</button>
         </form>
@@ -77,19 +77,19 @@ const secondaryButton = buttonClass('secondary');
       </div>
 
       {/* Fereastra de cod: arata adresa care nu a fost gasita. */}
-      <div class="overflow-hidden rounded-2xl border border-slate-700 bg-slate-950 text-slate-100 shadow-xl">
+      <div class="overflow-hidden rounded-2xl border border-dark-400 bg-dark-600 text-dark-50 shadow-xl">
         <div class="flex gap-1.5 border-b border-white/10 px-4 py-3" aria-hidden="true">
           <span class="h-3 w-3 rounded-full bg-red-400/80"></span>
           <span class="h-3 w-3 rounded-full bg-amber-300/80"></span>
           <span class="h-3 w-3 rounded-full bg-emerald-400/80"></span>
         </div>
-        <pre class="overflow-x-auto p-6 font-mono text-sm leading-7"><code><span class="text-violet-300">function</span> <span class="text-cyan-300">gasesteLectia</span>() &#123;
-  <span class="text-violet-300">const</span> cale = <span class="text-amber-300" id="nf-path">"/"</span>;
-  <span class="text-violet-300">throw new</span> Error(<span class="text-amber-300">"LectieNegasita"</span>);
+        <pre class="overflow-x-auto p-6 font-mono text-sm leading-7"><code><span class="text-pastel-blue-600">function</span> <span class="text-pastel-blue-500">gasesteLectia</span>() &#123;
+  <span class="text-pastel-blue-600">const</span> cale = <span class="text-amber-300" id="nf-path">"/"</span>;
+  <span class="text-pastel-blue-600">throw new</span> Error(<span class="text-amber-300">"LectieNegasita"</span>);
 &#125;
 
-<span class="text-slate-500"><span data-i18n="status">{t.status}</span>: <span class="text-red-300">404_NEGASIT</span></span>
-<span class="text-slate-500"><span data-i18n="path">{t.path}</span>: <span id="nf-path2" class="text-slate-300">/</span></span></code></pre>
+<span class="text-green-500"><span data-i18n="status">{t.status}</span>: <span class="text-red-300">404_NEGASIT</span></span>
+<span class="text-green-500"><span data-i18n="path">{t.path}</span>: <span id="nf-path2" class="text-dark-100">/</span></span></code></pre>
       </div>
     </section>
   </div>

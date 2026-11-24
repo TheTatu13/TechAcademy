@@ -77,7 +77,7 @@ const groups = {
   <section class="mx-auto max-w-3xl px-6 pt-12 pb-14 text-center md:pt-16">
     <p class={`mb-4 ${eyebrowClass}`}>{groups.eyebrow}</p>
     <h1 class={`text-4xl leading-tight font-extrabold tracking-tight md:text-6xl ${gradientTextClass}`}>{groups.title}</h1>
-    <p class="mx-auto mt-5 max-w-xl text-lg text-slate-600 dark:text-slate-300">{groups.text}</p>
+    <p class="mx-auto mt-5 max-w-xl text-lg text-green-600 dark:text-dark-100">{groups.text}</p>
   </section>
 
   {groups.sections.map((section) => (
@@ -90,10 +90,10 @@ const groups = {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              class={`${cardClass} group block h-full p-5 transition hover:-translate-y-0.5 hover:border-cyan-500 dark:hover:border-cyan-300`}
+              class={`${cardClass} group block h-full p-5 transition hover:-translate-y-0.5 hover:border-blue-500 dark:hover:border-pastel-blue-500`}
             >
               <span class="block font-semibold group-hover:underline">{item.name} <span aria-hidden="true">↗</span></span>
-              <span class="mt-1 block text-sm text-slate-600 dark:text-slate-300">{item.text}</span>
+              <span class="mt-1 block text-sm text-green-600 dark:text-dark-100">{item.text}</span>
               <span class="sr-only"> ({groups.open}, tab nou)</span>
             </a>
           </li>

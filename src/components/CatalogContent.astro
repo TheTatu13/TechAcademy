@@ -17,16 +17,18 @@ const tutorials = await getTutorials(lang);
 const domains = DOMAINS.filter((d) => tutorials.some((entry) => entry.data.domain === d));
 const levels = LEVELS.filter((l) => tutorials.some((entry) => entry.data.level === l));
 const selectClass =
-  'h-[46px] w-full rounded-lg border border-beige-700 bg-beige-300 px-4 text-sm dark:border-pastel-blue-900 dark:bg-[#0f1a21] sm:w-60';
+  'h-[46px] w-full rounded-lg border border-beige-700 bg-beige-300 px-4 text-sm dark:border-pastel-blue-900 dark:bg-dark-600 sm:w-60';
 ---
 
 <div class="relative overflow-hidden">
 <PageBackdrop />
 <section class="mx-auto max-w-[1392px] p-6">
-  <h1 class="mb-4 text-3xl font-bold text-primary-light dark:text-primary-dark">
-    {t('catalog.title')}
-  </h1>
-  <p class="mb-8 text-lg text-beige-800 dark:text-dark-200">{t('catalog.description')}</p>
+  <div class="mb-8 rounded-2xl border border-beige-600 bg-white/60 p-8 dark:border-white/10 dark:bg-dark-600">
+    <h1 class="mb-3 text-3xl font-bold text-primary-light dark:text-primary-dark">
+      {t('catalog.title')}
+    </h1>
+    <p class="max-w-2xl text-lg text-beige-800 dark:text-dark-200">{t('catalog.description')}</p>
+  </div>
 
   {tutorials.length === 0 && <p>{t('catalog.noContent')}</p>}
 
@@ -46,7 +48,7 @@ const selectClass =
             data-label-none={t('search.noResults')}
             data-label-results={t('search.results')}
             data-label-result={t('search.result')}
-            class="h-[60px] w-full rounded-lg border border-beige-700 bg-beige-300 px-4 dark:border-pastel-blue-900 dark:bg-[#0f1a21]"
+            class="h-[60px] w-full rounded-lg border border-beige-700 bg-beige-300 px-4 dark:border-pastel-blue-900 dark:bg-dark-600"
           />
           <div id="search-results" class="mt-4" aria-live="polite" hidden>
             <p id="search-summary" class="mb-3 text-sm" />

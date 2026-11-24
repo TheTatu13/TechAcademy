@@ -58,9 +58,9 @@ const secondaryButton = buttonClass('secondary');
     {featured && (
       <a
         href={seriesHref(featured.slug)}
-        class="mb-8 inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/70 py-1.5 pr-4 pl-1.5 text-sm backdrop-blur transition hover:border-cyan-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-cyan-300"
+        class="mb-8 inline-flex items-center gap-3 rounded-full border border-beige-600 bg-white/70 py-1.5 pr-4 pl-1.5 text-sm backdrop-blur transition hover:border-blue-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-pastel-blue-500"
       >
-        <span class="rounded-full bg-cyan-500 px-2.5 py-0.5 text-xs font-bold text-slate-950">{t('home.announce.label')}</span>
+        <span class="rounded-full bg-blue-500 px-2.5 py-0.5 text-xs font-bold text-white">{t('home.announce.label')}</span>
         <span>{t('home.announce.text')}</span>
         <span aria-hidden="true">→</span>
       </a>
@@ -69,11 +69,11 @@ const secondaryButton = buttonClass('secondary');
     <p class={`${eyebrow} mb-5`}>{t('home.eyebrow')}</p>
     <h1 class="text-5xl leading-[1.05] font-extrabold tracking-tight md:text-7xl">
       {t('home.title.line1')}<br />
-      <span class="bg-gradient-to-r from-cyan-500 via-teal-400 to-violet-500 bg-clip-text text-transparent dark:from-cyan-300 dark:via-sky-400 dark:to-violet-400">
+      <span class="bg-gradient-to-r from-blue-500 via-blue-300 to-blue-600 bg-clip-text text-transparent dark:from-pastel-blue-500 dark:via-blue-400 dark:to-blue-300">
         {t('home.title.line2')}
       </span>
     </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-300">{t('home.subtitle')}</p>
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-green-600 dark:text-dark-100">{t('home.subtitle')}</p>
 
     <form action={catalogPath} method="get" role="search" class="mx-auto mt-10 flex max-w-xl gap-2">
       <label for="home-search" class="sr-only">{t('home.search.label')}</label>
@@ -83,7 +83,7 @@ const secondaryButton = buttonClass('secondary');
         type="search"
         autocomplete="off"
         placeholder={t('search.placeholder')}
-        class="h-14 min-w-0 flex-1 rounded-full border border-slate-300 bg-white/80 px-6 text-base backdrop-blur focus:border-cyan-500 focus:outline-none dark:border-white/15 dark:bg-white/5 dark:focus:border-cyan-300"
+        class="h-14 min-w-0 flex-1 rounded-full border border-beige-600 bg-white/80 px-6 text-base backdrop-blur focus:border-blue-500 focus:outline-none dark:border-white/15 dark:bg-white/5 dark:focus:border-pastel-blue-500"
       />
       <button type="submit" class={primaryButton}>{t('home.search.button')}</button>
     </form>
@@ -105,9 +105,9 @@ const secondaryButton = buttonClass('secondary');
         data-label-next={t('home.continue.next')}
         class={`${card} mx-auto mt-10 max-w-xl p-4 text-left`}
       >
-        <p class="font-mono text-xs uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300" id="home-continue-label"></p>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-blue-700 dark:text-pastel-blue-500" id="home-continue-label"></p>
         <a id="home-continue-link" href="#" class="mt-1 block text-lg font-semibold hover:underline"></a>
-        <p id="home-continue-series" class="text-sm text-slate-500 dark:text-slate-400"></p>
+        <p id="home-continue-series" class="text-sm text-green-500 dark:text-dark-200"></p>
       </div>
     )}
   </section>
@@ -120,11 +120,11 @@ const secondaryButton = buttonClass('secondary');
       { key: 'community', icon: '✦' },
     ].map((feature) => (
       <div class={`${card} reveal p-6`}>
-        <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-700 dark:text-cyan-300" aria-hidden="true">
+        <span class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/15 text-blue-700 dark:text-pastel-blue-500" aria-hidden="true">
           {feature.icon}
         </span>
         <h2 class="mb-2 text-lg font-semibold">{t(`home.feature.${feature.key}.title` as any)}</h2>
-        <p class="text-sm text-slate-600 dark:text-slate-300">{t(`home.feature.${feature.key}.text` as any)}</p>
+        <p class="text-sm text-green-600 dark:text-dark-100">{t(`home.feature.${feature.key}.text` as any)}</p>
       </div>
     ))}
   </section>
@@ -133,7 +133,7 @@ const secondaryButton = buttonClass('secondary');
   <section class="mx-auto max-w-6xl px-6 pb-20">
     <div class="reveal mb-8 text-center">
       <h2 class="text-3xl font-bold md:text-4xl">{t('home.domains.title')}</h2>
-      <p class="mt-2 text-slate-600 dark:text-slate-300">{t('home.domains.subtitle')}</p>
+      <p class="mt-2 text-green-600 dark:text-dark-100">{t('home.domains.subtitle')}</p>
     </div>
     <ul class="grid grid-cols-2 gap-3 md:grid-cols-4">
       {domainCounts.map(({ domain, count }) => (
@@ -141,17 +141,17 @@ const secondaryButton = buttonClass('secondary');
           {count > 0 ? (
             <a
               href={`${catalogPath}?domain=${domain}`}
-              class={`${card} block h-full p-5 transition hover:-translate-y-0.5 hover:border-cyan-500 dark:hover:border-cyan-300`}
+              class={`${card} block h-full p-5 transition hover:-translate-y-0.5 hover:border-blue-500 dark:hover:border-pastel-blue-500`}
             >
               <span class="block font-semibold">{t(`domain.${domain}` as any)}</span>
-              <span class="mt-1 block text-sm text-slate-500 dark:text-slate-400">
+              <span class="mt-1 block text-sm text-green-500 dark:text-dark-200">
                 {count} {t('series.lessons')}
               </span>
             </a>
           ) : (
             <div class={`${card} h-full p-5 opacity-60`}>
               <span class="block font-semibold">{t(`domain.${domain}` as any)}</span>
-              <span class="mt-1 block text-sm text-slate-500 dark:text-slate-400">{t('home.domains.soon')}</span>
+              <span class="mt-1 block text-sm text-green-500 dark:text-dark-200">{t('home.domains.soon')}</span>
             </div>
           )}
         </li>
@@ -165,7 +165,7 @@ const secondaryButton = buttonClass('secondary');
       <div class="reveal">
         <p class={`${eyebrow} mb-3`}>{t('home.path.eyebrow')}</p>
         <h2 class="mb-4 text-3xl font-bold md:text-4xl">{t('home.path.title')}</h2>
-        <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.path.text')}</p>
+        <p class="mb-6 text-green-600 dark:text-dark-100">{t('home.path.text')}</p>
         <a href={seriesHref(featured.slug)} class={primaryButton}>{t('home.path.open')}</a>
       </div>
       <div class={`${card} reveal p-6`}>
@@ -180,18 +180,18 @@ const secondaryButton = buttonClass('secondary');
           aria-valuemax="100"
           aria-valuenow="0"
           data-bar-ids={featuredIds}
-          class="mb-5 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10"
+          class="mb-5 h-2 overflow-hidden rounded-full bg-beige-600 dark:bg-white/10"
         >
-          <div class="h-full w-0 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 transition-[width] duration-500"></div>
+          <div class="h-full w-0 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 transition-[width] duration-500"></div>
         </div>
         <ol class="flex flex-col gap-2">
           {featuredEntries.map((entry, index) => (
             <li>
               <a
                 href={lessonHref(entry)}
-                class="flex items-center gap-3 rounded-xl border border-slate-200 p-3 transition hover:border-cyan-500 dark:border-white/10 dark:hover:border-cyan-300"
+                class="flex items-center gap-3 rounded-xl border border-beige-600 p-3 transition hover:border-blue-500 dark:border-white/10 dark:hover:border-pastel-blue-500"
               >
-                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cyan-500/15 text-sm font-bold text-cyan-700 dark:text-cyan-300">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/15 text-sm font-bold text-blue-700 dark:text-pastel-blue-500">
                   {index + 1}
                 </span>
                 <span class="min-w-0 flex-1 truncate text-sm font-medium">{entry.data.title}</span>
@@ -207,7 +207,7 @@ const secondaryButton = buttonClass('secondary');
   {/* Contributie: terminal cu comenzi reale */}
   <section class="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-20 md:grid-cols-2">
     <div class="reveal order-2 md:order-1">
-      <div class="overflow-hidden rounded-2xl border border-slate-700 bg-slate-950 text-slate-100 shadow-xl">
+      <div class="overflow-hidden rounded-2xl border border-dark-400 bg-dark-600 text-dark-50 shadow-xl">
         <div class="flex items-center justify-between border-b border-white/10 px-4 py-2">
           <div class="flex gap-1.5" aria-hidden="true">
             <span class="h-3 w-3 rounded-full bg-red-400/80"></span>
@@ -219,20 +219,20 @@ const secondaryButton = buttonClass('secondary');
             id="copy-commands"
             data-label-copy={t('home.contribute.copy')}
             data-label-copied={t('home.contribute.copied')}
-            class="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs transition hover:border-cyan-300"
+            class="rounded-md border border-white/15 px-2.5 py-1 font-mono text-xs transition hover:border-pastel-blue-500"
           >
             {t('home.contribute.copy')}
           </button>
         </div>
-        <pre id="commands" class="overflow-x-auto p-5 font-mono text-sm leading-7"><code><span class="text-slate-500">$ </span>git clone https://github.com/peviitor-ro/academy
-<span class="text-slate-500">$ </span>npm install
-<span class="text-slate-500">$ </span>npm run dev</code></pre>
+        <pre id="commands" class="overflow-x-auto p-5 font-mono text-sm leading-7"><code><span class="text-green-500">$ </span>git clone https://github.com/peviitor-ro/academy
+<span class="text-green-500">$ </span>npm install
+<span class="text-green-500">$ </span>npm run dev</code></pre>
       </div>
     </div>
     <div class="reveal order-1 md:order-2">
       <p class={`${eyebrow} mb-3`}>{t('home.contribute.eyebrow')}</p>
       <h2 class="mb-4 text-3xl font-bold md:text-4xl">{t('home.contribute.title')}</h2>
-      <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.contribute.text')}</p>
+      <p class="mb-6 text-green-600 dark:text-dark-100">{t('home.contribute.text')}</p>
       <a href={translatePath('get-involved')} class={secondaryButton}>{t('home.contribute.link')}</a>
     </div>
   </section>
@@ -242,7 +242,7 @@ const secondaryButton = buttonClass('secondary');
     <section class="mx-auto max-w-6xl px-6 pb-20">
       <div class="reveal mb-8 flex flex-wrap items-end justify-between gap-4">
         <h2 class="text-3xl font-bold md:text-4xl">{t('home.latest.title')}</h2>
-        <a href={catalogPath} class="font-semibold underline hover:text-cyan-700 dark:hover:text-cyan-300">
+        <a href={catalogPath} class="font-semibold underline hover:text-blue-700 dark:hover:text-pastel-blue-500">
           {t('home.latest.all')} →
         </a>
       </div>
@@ -256,13 +256,52 @@ const secondaryButton = buttonClass('secondary');
   <section class="mx-auto grid max-w-6xl gap-4 px-6 pb-20 md:grid-cols-2">
     <div class={`${card} reveal p-8`}>
       <h2 class="mb-2 text-2xl font-bold">{t('home.audience.learner.title')}</h2>
-      <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.audience.learner.text')}</p>
+      <p class="mb-6 text-green-600 dark:text-dark-100">{t('home.audience.learner.text')}</p>
       <a href={catalogPath} class={primaryButton}>{t('home.cta.catalog')}</a>
     </div>
     <div class={`${card} reveal p-8`}>
       <h2 class="mb-2 text-2xl font-bold">{t('home.audience.volunteer.title')}</h2>
-      <p class="mb-6 text-slate-600 dark:text-slate-300">{t('home.audience.volunteer.text')}</p>
+      <p class="mb-6 text-green-600 dark:text-dark-100">{t('home.audience.volunteer.text')}</p>
       <a href={translatePath('get-involved')} class={secondaryButton}>{t('home.audience.volunteer.cta')}</a>
+    </div>
+  </section>
+
+  {/* Beneficii */}
+  <section class="border-y border-beige-600 bg-beige-300/60 py-16 dark:border-white/10 dark:bg-dark-600/60">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="reveal mb-8 text-center text-3xl font-bold text-blue-700 dark:text-pastel-blue-500">{t('home.benefits.title')}</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {([
+          ['innovation', 'M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2zM9 21h6'],
+          ['remote', 'M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z'],
+          ['demand', 'M3 17l6-6 4 4 8-8M15 7h6v6'],
+          ['pay', 'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'],
+        ] as const).map(([key, path]) => (
+          <div class="reveal rounded-2xl border border-beige-600 bg-white/70 p-6 dark:border-white/10 dark:bg-dark-400/60">
+            <span class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-blue-500/15 text-blue-600 dark:text-pastel-blue-500">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={path} /></svg>
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-blue-700 dark:text-pastel-blue-500">{t(`home.benefits.${key}.title`)}</h3>
+            <p class="text-sm text-green-600 dark:text-dark-100">{t(`home.benefits.${key}.text`)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Comunitate */}
+  <section class="mx-auto max-w-5xl px-6 py-20">
+    <div class="reveal rounded-3xl border border-beige-600 bg-white/70 p-10 text-center dark:border-white/10 dark:bg-dark-400/60">
+      <h2 class="text-2xl font-bold md:text-3xl">{t('home.community.title')}</h2>
+      <p class="mx-auto mt-3 max-w-xl text-green-600 dark:text-dark-100">{t('home.community.text')}</p>
+      <dl class="mt-8 flex flex-wrap items-center justify-center gap-10">
+        <div><dt class="text-xs font-semibold uppercase tracking-wider text-green-500 dark:text-dark-200">{t('home.community.lessons')}</dt><dd class="text-4xl font-extrabold text-blue-600 dark:text-pastel-blue-500">{tutorials.length}</dd></div>
+        <div><dt class="text-xs font-semibold uppercase tracking-wider text-green-500 dark:text-dark-200">{t('home.community.series')}</dt><dd class="text-4xl font-extrabold text-blue-600 dark:text-pastel-blue-500">{allSeries.length}</dd></div>
+        <div><dt class="text-xs font-semibold uppercase tracking-wider text-green-500 dark:text-dark-200">{t('home.community.free')}</dt><dd class="text-4xl font-extrabold text-blue-600 dark:text-pastel-blue-500">100%</dd></div>
+      </dl>
+      <div class="mt-8">
+        <a href={translatePath('get-involved')} class={primaryButton}>{t('home.community.cta')}</a>
+      </div>
     </div>
   </section>
 
@@ -270,7 +309,7 @@ const secondaryButton = buttonClass('secondary');
   <section class="mx-auto max-w-4xl px-6 pb-24 text-center">
     <div class="reveal">
       <h2 class="text-4xl font-extrabold md:text-5xl">{t('home.final.title')}</h2>
-      <p class="mx-auto mt-3 max-w-xl text-slate-600 dark:text-slate-300">{t('home.final.text')}</p>
+      <p class="mx-auto mt-3 max-w-xl text-green-600 dark:text-dark-100">{t('home.final.text')}</p>
       <div class="mt-8">
         <a href={featured && featuredEntries[0] ? lessonHref(featuredEntries[0]) : catalogPath} class={primaryButton}>
           {t('home.cta.catalog')}
