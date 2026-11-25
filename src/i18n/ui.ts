@@ -25,6 +25,7 @@ export const ui = {
       'Aici vei găsi lista mentorilor dedicați care te vor ajuta să îți dezvolți abilitățile și să îți atingi obiectivele.',
 
     // Pagina principala
+    'catalog.viewAll': 'Vezi toate',
     'home.badge': 'Gratuit și open source',
     'home.cta.start': 'Începe să înveți',
     'home.carousel.label': 'Serii de lecții',
@@ -172,6 +173,7 @@ export const ui = {
       'Here you will find the list of dedicated mentors who will help you develop your skills and reach your goals.',
 
     // Home page
+    'catalog.viewAll': 'View all',
     'home.badge': 'Free & open source',
     'home.cta.start': 'Start learning',
     'home.carousel.label': 'Lesson series',
