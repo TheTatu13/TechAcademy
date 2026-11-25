@@ -25,6 +25,11 @@ export const ui = {
       'Aici vei găsi lista mentorilor dedicați care te vor ajuta să îți dezvolți abilitățile și să îți atingi obiectivele.',
 
     // Pagina principala
+    'home.badge': 'Gratuit și open source',
+    'home.cta.start': 'Începe să înveți',
+    'home.carousel.label': 'Serii de lecții',
+    'home.carousel.prev': 'Seria anterioară',
+    'home.carousel.next': 'Seria următoare',
     'home.announce.label': 'Nou',
     'home.announce.text': 'Seria „Start Academia” este disponibilă',
     'home.eyebrow': 'Academia peViitor · învățare gratuită',
@@ -167,6 +172,11 @@ export const ui = {
       'Here you will find the list of dedicated mentors who will help you develop your skills and reach your goals.',
 
     // Home page
+    'home.badge': 'Free & open source',
+    'home.cta.start': 'Start learning',
+    'home.carousel.label': 'Lesson series',
+    'home.carousel.prev': 'Previous series',
+    'home.carousel.next': 'Next series',
     'home.announce.label': 'New',
     'home.announce.text': 'The “Start Academia” series is available',
     'home.eyebrow': 'Academia peViitor · free learning',

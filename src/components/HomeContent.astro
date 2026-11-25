@@ -55,19 +55,12 @@ const secondaryButton = buttonClass('secondary');
 
   {/* Hero */}
   <section class="mx-auto max-w-5xl px-6 pt-10 pb-16 text-center md:pt-16">
-    {featured && (
-      <a
-        href={seriesHref(featured.slug)}
-        class="mb-8 inline-flex items-center gap-3 rounded-full border border-beige-600 bg-white/70 py-1.5 pr-4 pl-1.5 text-sm backdrop-blur transition hover:border-blue-500 dark:border-white/10 dark:bg-white/5 dark:hover:border-pastel-blue-500"
-      >
-        <span class="rounded-full bg-blue-500 px-2.5 py-0.5 text-xs font-bold text-white">{t('home.announce.label')}</span>
-        <span>{t('home.announce.text')}</span>
-        <span aria-hidden="true">→</span>
-      </a>
-    )}
+    <p class="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-500/40 bg-pastel-blue-500/20 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-blue-700 dark:border-pastel-blue-500/40 dark:text-pastel-blue-500">
+      <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M8 12l3 3 5-6" /></svg>
+      {t('home.badge')}
+    </p>
 
-    <p class={`${eyebrow} mb-5`}>{t('home.eyebrow')}</p>
-    <h1 class="text-5xl leading-[1.05] font-extrabold tracking-tight md:text-7xl">
+    <h1 class="text-4xl leading-[1.1] font-extrabold tracking-tight md:text-6xl">
       {t('home.title.line1')}<br />
       <span class="bg-gradient-to-r from-blue-500 via-blue-300 to-blue-600 bg-clip-text text-transparent dark:from-pastel-blue-500 dark:via-blue-400 dark:to-blue-300">
         {t('home.title.line2')}
@@ -75,21 +68,32 @@ const secondaryButton = buttonClass('secondary');
     </h1>
     <p class="mx-auto mt-6 max-w-2xl text-lg text-green-600 dark:text-dark-100">{t('home.subtitle')}</p>
 
-    <form action={catalogPath} method="get" role="search" class="mx-auto mt-10 flex max-w-xl gap-2">
-      <label for="home-search" class="sr-only">{t('home.search.label')}</label>
-      <input
-        id="home-search"
-        name="q"
-        type="search"
-        autocomplete="off"
-        placeholder={t('search.placeholder')}
-        class="h-14 min-w-0 flex-1 rounded-full border border-beige-600 bg-white/80 px-6 text-base backdrop-blur focus:border-blue-500 focus:outline-none dark:border-white/15 dark:bg-white/5 dark:focus:border-pastel-blue-500"
-      />
-      <button type="submit" class={primaryButton}>{t('home.search.button')}</button>
-    </form>
+    {allSeries.length > 0 && (
+      <div class="relative mx-auto mt-10 max-w-3xl" id="home-carousel" role="region" aria-roledescription="carousel" aria-label={t('home.carousel.label')}>
+        <ul class="flex snap-x snap-mandatory overflow-x-auto rounded-2xl border border-beige-600 [scrollbar-width:none] dark:border-white/10 [&::-webkit-scrollbar]:hidden" data-track>
+          {allSeries.map((series) => (
+            <li class="relative aspect-[21/9] w-full shrink-0 snap-center">
+              <a href={seriesHref(series.slug)} class="absolute inset-0 flex flex-col justify-end bg-gradient-to-br from-blue-600 via-blue-500 to-dark-500 p-8 text-left">
+                <span class="mb-1 font-mono text-xs uppercase tracking-widest text-pastel-blue-500">{series.lessons.length + (series.project ? 1 : 0)} {t('series.lessons')}</span>
+                <span class="text-3xl font-extrabold text-white md:text-4xl">{series.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        {allSeries.length > 1 && (
+          <>
+            <button type="button" data-prev aria-label={t('home.carousel.prev')} class="absolute top-1/2 left-3 -translate-y-1/2 rounded-full bg-dark-500/60 px-3 py-2 text-white backdrop-blur hover:bg-dark-500">‹</button>
+            <button type="button" data-next aria-label={t('home.carousel.next')} class="absolute top-1/2 right-3 -translate-y-1/2 rounded-full bg-dark-500/60 px-3 py-2 text-white backdrop-blur hover:bg-dark-500">›</button>
+            <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5" aria-hidden="true">
+              {allSeries.map((_, i) => <span data-dot class={`h-1.5 rounded-full bg-white/60 transition-all ${i === 0 ? 'w-6 bg-white' : 'w-1.5'}`}></span>)}
+            </div>
+          </>
+        )}
+      </div>
+    )}
 
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-      <a href={catalogPath} class={secondaryButton}>{t('home.cta.catalog')}</a>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href={catalogPath} class={primaryButton}>{t('home.cta.start')}</a>
       <a href={REPO_URL} target="_blank" rel="noopener noreferrer" class={secondaryButton}>
         {t('home.cta.github')}
       </a>
@@ -362,6 +366,24 @@ const secondaryButton = buttonClass('secondary');
       if (series) series.textContent = next.series;
       box.hidden = false;
     }
+  }
+
+  // Carusel serii: derulare cu butoane + indicator
+  const carousel = document.getElementById('home-carousel');
+  const track = carousel?.querySelector<HTMLElement>('[data-track]');
+  if (carousel && track) {
+    const dots = carousel.querySelectorAll<HTMLElement>('[data-dot]');
+    const go = (dir: number) => track.scrollBy({ left: dir * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+    carousel.querySelector('[data-prev]')?.addEventListener('click', () => go(-1));
+    carousel.querySelector('[data-next]')?.addEventListener('click', () => go(1));
+    track.addEventListener('scroll', () => {
+      const i = Math.round(track.scrollLeft / track.clientWidth);
+      dots.forEach((d, n) => {
+        d.classList.toggle('w-6', n === i);
+        d.classList.toggle('bg-white', n === i);
+        d.classList.toggle('w-1.5', n !== i);
+      });
+    }, { passive: true });
   }
 
   // Copiere comenzi
